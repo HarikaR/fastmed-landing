@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>FastMed – Book Doctors Without Waiting</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .cta {
+            display: block;
+            background: #007bff;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin: 20px 0;
+        }
+
+        .step-icon {
+            font-size: 2em;
+            width: 40px;
+        }
+
+        .step-content {
+            margin-left: 15px;
+        }
+
+        .features {
+            margin: 30px 0;
+        }
+
+        .features h3 {
+            margin-bottom: 15px;
+        }
+
+        .features ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        form {
+            margin: 30px 0;
+        }
+
+        form input,
+        form select,
+        form button {
+            width: 100%;
+            padding: 12px;
+            margin: 6px 0;
+        }
+
+        form button {
+            background: #28a745;
+            color: #fff;
+            border: none;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #777;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Book Doctor Appointments Without Waiting in Lines</h1>
+            <p class="subtitle">Instant slot booking. QR check‑in. Skip the queue. One app for all clinics & hospitals.
+            </p>
+            <a href="#waitlist" class="cta" onclick="incrementCounter()">Join Waitlist – Get Early Access</a>
+			<p style="text-align:center; color:#555; font-size:0.9em;" id="clickCountDisplay"></p>
+        </header>
+        <section>
+            <h2>How it works</h2>
+            <div class="step">
+                <div class="step-icon">📲</div>
+                <div class="step-content"><strong>Search & Book:</strong> Find doctors or hospitals and pick your time
+                    slot.</div>
+            </div>
+            <div class="step">
+                <div class="step-icon">🎫</div>
+                <div class="step-content"><strong>Get QR Code:</strong> Instant QR code sent to your phone.</div>
+            </div>
+            <div class="step">
+                <div class="step-icon">🚪</div>
+                <div class="step-content"><strong>Express Check‑In:</strong> Scan QR at OPD and walk in without lines.
+                </div>
+            </div>
+        </section>
+        <section class="features">
+            <h3>Why FastMed?</h3>
+            <div style="display:flex; gap:20px; flex-wrap:wrap;">
+                <div style="flex:1">
+                    <h4>For Patients</h4>
+                    <ul>
+                        <li>Book slots in seconds</li>
+                        <li>Skip token queues with QR</li>
+                        <li>Get reminders & live updates</li>
+                    </ul>
+                </div>
+                <div style="flex:1">
+                    <h4>For Clinics & Doctors</h4>
+                    <ul>
+                        <li>Digital appointment dashboard</li>
+                        <li>Real-time queue management</li>
+                        <li>Streamlined OPD flow and fewer conflicts</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section id="waitlist">
+            <h2>Join Our Early Access Waitlist</h2>
+            <form>
+                <input type="text" placeholder="Your name" required>
+                <input type="email" placeholder="Email address" required>
+                <input type="tel" placeholder="Phone number (optional)">
+                <select>
+                    <option>I'm joining as a:</option>
+                    <option>Patient</option>
+                    <option>Doctor / Clinic</option>
+                </select>
+                <button type="submit">Get Early Access</button>
+            </form>
+        </section>
+        <footer>
+            <p>© 2025 FastMed. All rights reserved. | Privacy Policy</p>
+        </footer>
+    </div>
+</body>
+
+</html>
+
+
+<script>
+	// Initialize counter from localStorage or set to 0
+	let clickCount = localStorage.getItem("waitlistClicks") || 0;
+	document.getElementById("clickCountDisplay").innerText = `No.of people joined - ${clickCount}`;
+	function incrementCounter() {
+		clickCount++;
+		localStorage.setItem("waitlistClicks", clickCount);
+		document.getElementById("clickCountDisplay").innerText = `No.of people joined - ${clickCount}`;
+	}
+</script>
