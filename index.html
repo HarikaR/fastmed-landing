@@ -4,21 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HelloDoc - FastMed</title>
-  <!-- Font Awesome CDN -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    integrity="sha512-1ycn6IcaQQ40/MKBW2W0RFaz1OyVzzsX1b5vDjGpvXmd4eC6jYJpFj9H2y9l+Y+vLrT+OdDUnztYV1JrF9iIbg=="
     crossorigin="anonymous"
-    referrerpolicy="no-referrer"
   />
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: url('background.jpg') no-repeat center center fixed;
-      background-size: cover;
+      background: #555; /* fallback in case bg image not used */
       color: white;
       text-align: center;
     }
@@ -30,7 +26,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
+      padding: 2rem 1rem;
     }
 
     img.logo {
@@ -58,15 +54,23 @@
       margin: 1.5rem 0;
     }
 
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
     .buttons a {
-      margin: 0.5rem;
-      padding: 0.6rem 1.2rem;
+      padding: 0.6rem 1.4rem;
       background-color: #00bfff;
       color: white;
       text-decoration: none;
       border-radius: 25px;
       font-weight: 600;
       transition: background 0.3s ease;
+      white-space: nowrap;
     }
 
     .buttons a:hover {
@@ -87,6 +91,37 @@
 
     .socials a:hover {
       color: #00bfff;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    /* Mobile Fixes */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+      }
+
+      .buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .buttons a {
+        width: 90%;
+        max-width: 300px;
+      }
     }
   </style>
 </head>
@@ -110,6 +145,8 @@
       <a href="#"><i class="fab fa-twitter"></i></a>
       <a href="#"><i class="fas fa-globe"></i></a>
     </div>
+
+    <div class="footer">hellodoccare.in</div>
   </div>
 </body>
 </html>
