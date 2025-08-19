@@ -2,236 +2,245 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HelloDocCare - Early Access</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HelloDoc - FastMed</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous"
+  />
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f9f9f9;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #555;
+      color: white;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    img.logo {
+      width: 120px;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: #00bfff;
+      margin-top: 0.5rem;
+    }
+
+    p {
+      max-width: 650px;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 1.5rem auto;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .buttons a {
+      padding: 0.6rem 1.4rem;
+      background-color: #00bfff;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .buttons a:hover {
+      background-color: #009acd;
+    }
+
+    .socials {
+      margin-top: 2rem;
+    }
+
+    .socials a {
+      margin: 0 0.6rem;
+      color: white;
+      font-size: 1.6rem;
+      transition: color 0.3s ease;
+    }
+
+    .socials a:hover {
+      color: #00bfff;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    /* Hospitals & Doctors Section */
+    #main-content {
+      display: none;
+      padding: 2rem;
+      background: #f5f5f5;
       color: #333;
     }
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 15px 30px;
-      background: #fff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    header img {
-      height: 50px;
-    }
-    .search-bar {
-      flex: 1;
-      margin: 0 20px;
-      display: flex;
-      background: #f1f1f1;
-      border-radius: 25px;
-      overflow: hidden;
-      border: 1px solid #ddd;
-    }
-    .search-bar input {
-      flex: 1;
-      padding: 12px 15px;
-      border: none;
-      outline: none;
-      font-size: 1rem;
-      background: transparent;
-    }
-    .search-bar button {
-      padding: 0 20px;
-      background: #e23744;
-      border: none;
-      color: #fff;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    .hero {
+
+    .section-title {
       text-align: center;
-      padding: 60px 20px;
-      background: url('background-placeholder.jpg') no-repeat center/cover;
-      color: #fff;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #00bfff;
     }
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-    .btn {
-      padding: 12px 24px;
-      background: #e23744;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-      border-radius: 5px;
-      margin-top: 20px;
-    }
-    .btn:hover {
-      background: #c81f2f;
-    }
-    .social-icons {
-      margin-top: 20px;
-    }
-    .social-icons a {
-      margin: 0 8px;
-      color: #fff;
-      font-size: 1.3rem;
-      text-decoration: none;
-    }
-    .section {
-      padding: 40px 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-    .section h2 {
-      margin-bottom: 20px;
-      font-size: 1.8rem;
-      font-weight: bold;
-    }
-    .card-grid {
+
+    .list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 1rem;
     }
+
     .card {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
+      background: white;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       transition: transform 0.2s;
     }
+
     .card:hover {
-      transform: scale(1.02);
+      transform: scale(1.03);
     }
-    .card img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
+
+    .card h3 {
+      margin: 0.5rem 0;
+      color: #222;
     }
-    .card-content {
-      padding: 15px;
-    }
-    .card-content h3 {
-      margin: 0 0 10px;
-      font-size: 1.2rem;
-    }
-    .card-content p {
+
+    .card p {
       margin: 0;
-      color: #666;
       font-size: 0.9rem;
+      color: #666;
     }
-    /* Hide content initially */
-    #content {
-      display: none;
+
+    .back-btn {
+      display: block;
+      margin: 2rem auto;
+      padding: 0.7rem 1.5rem;
+      background: #00bfff;
+      color: white;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      width: fit-content;
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1rem; }
+      p { font-size: 0.95rem; }
+      .buttons { flex-direction: column; }
     }
   </style>
 </head>
 <body>
+  <!-- Landing Section -->
+  <div class="overlay" id="landing">
+    <img src="hellodoc-logo.png" alt="HelloDoc Logo" class="logo" />
+    <h1>HelloDoc</h1>
+    <h2>BOOK, SCAN, WALK-IN<br/>NO MORE WAITING JUST HELLODOC</h2>
+    <p>
+      Say goodbye to long queues and chaotic waiting rooms. With HelloDocCare, booking a doctor’s appointment becomes as easy as ordering food online.
+    </p>
 
-  <header>
-    <img src="logo.png" alt="HelloDocCare Logo" />
+    <div class="buttons">
+      <a href="#" onclick="showMain()">Join Early Access</a>
+    </div>
     
-    <!-- Search Bar -->
-    <div class="search-bar" style="display:none;" id="searchBar">
-      <input type="text" id="searchInput" placeholder="Search hospitals or doctors..." onkeyup="filterCards()" />
-      <button><i class="fas fa-search"></i></button>
+    <p>
+      For hospitals and clinics, HelloDocCare is a game-changer — improving patient flow, reducing overcrowding, and enabling smarter scheduling.
+    </p>
+
+    <div class="buttons">
+      <a href="#">Partner with Us</a>
     </div>
 
-    <button class="btn" onclick="showContent()">Join Early Access</button>
-  </header>
-
-  <section class="hero">
-    <h1>Find Trusted Hospitals & Doctors</h1>
-    <p>Connecting you with the best healthcare professionals nearby.</p>
-    <div class="social-icons">
-      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://twitter.com" target="_blank"><i class="fab fa-x-twitter"></i></a>
-      <a href="mailto:contact@hellodoccare.in"><i class="fas fa-envelope"></i></a>
+    <div class="socials">
+      <a href="https://facebook.com/hellodoccare" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://instagram.com/hellodoccare" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://twitter.com/hellodoccare" target="_blank"><i class="fab fa-x-twitter"></i></a>
+      <a href="mailto:support@hellodoccare.in"><i class="fas fa-envelope"></i></a>
     </div>
-  </section>
 
-  <!-- Hidden Content -->
-  <div id="content">
-    <!-- Hospitals -->
-    <section class="section" id="hospitals">
-      <h2>Hospitals</h2>
-      <div class="card-grid" id="hospitalList">
-        <div class="card">
-          <img src="https://source.unsplash.com/400x300/?hospital" alt="Hospital">
-          <div class="card-content">
-            <h3>City Hospital</h3>
-            <p>24/7 Emergency, Cardiology, Neurology</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://source.unsplash.com/400x300/?medical" alt="Hospital">
-          <div class="card-content">
-            <h3>Green Valley Medical Center</h3>
-            <p>Orthopedics, Pediatrics, Surgery</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://source.unsplash.com/400x300/?clinic" alt="Hospital">
-          <div class="card-content">
-            <h3>Sunrise Health Clinic</h3>
-            <p>Dermatology, General Practice</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="footer">hellodoccare.in</div>
+  </div>
 
-    <!-- Doctors -->
-    <section class="section">
-      <h2>Doctors by Specialization</h2>
-      <div class="card-grid" id="doctorList">
-        <div class="card">
-          <img src="https://source.unsplash.com/400x300/?doctor" alt="Doctor">
-          <div class="card-content">
-            <h3>Dr. Anil Mehta</h3>
-            <p>Cardiologist</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://source.unsplash.com/400x300/?surgeon" alt="Doctor">
-          <div class="card-content">
-            <h3>Dr. Kavita Deshmukh</h3>
-            <p>Orthopedic Surgeon</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://source.unsplash.com/400x300/?pediatrician" alt="Doctor">
-          <div class="card-content">
-            <h3>Dr. Neha Rao</h3>
-            <p>Pediatrician</p>
-          </div>
-        </div>
+  <!-- Hospitals & Doctors Section -->
+  <div id="main-content">
+    <h2 class="section-title">Nearby Hospitals</h2>
+    <div class="list">
+      <div class="card">
+        <h3>CityCare Hospital</h3>
+        <p>Multi-speciality | 2 km away</p>
       </div>
-    </section>
+      <div class="card">
+        <h3>Metro Health Clinic</h3>
+        <p>General | 3.5 km away</p>
+      </div>
+      <div class="card">
+        <h3>Sunrise Hospital</h3>
+        <p>Orthopedics | 5 km away</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Doctors by Specialty</h2>
+    <div class="list">
+      <div class="card">
+        <h3>Dr. Meera Sharma</h3>
+        <p>Cardiologist - Metro Health Clinic</p>
+      </div>
+      <div class="card">
+        <h3>Dr. Rajiv Menon</h3>
+        <p>Orthopedic Surgeon - CityCare Hospital</p>
+      </div>
+      <div class="card">
+        <h3>Dr. Priya Nair</h3>
+        <p>Pediatrician - Sunrise Hospital</p>
+      </div>
+    </div>
+
+    <a href="#" class="back-btn" onclick="showLanding()">← Back</a>
   </div>
 
   <script>
-    function showContent() {
-      document.getElementById('content').style.display = 'block';
-      document.getElementById('searchBar').style.display = 'flex';
-      document.getElementById('hospitals').scrollIntoView({ behavior: 'smooth' });
+    function showMain() {
+      document.getElementById('landing').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+      document.body.style.background = '#f5f5f5';
     }
-
-    function filterCards() {
-      const query = document.getElementById('searchInput').value.toLowerCase();
-      const cards = document.querySelectorAll('.card');
-
-      cards.forEach(card => {
-        const text = card.innerText.toLowerCase();
-        card.style.display = text.includes(query) ? 'block' : 'none';
-      });
+    function showLanding() {
+      document.getElementById('landing').style.display = 'flex';
+      document.getElementById('main-content').style.display = 'none';
+      document.body.style.background = '#555';
     }
   </script>
-
 </body>
 </html>
