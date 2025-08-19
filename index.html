@@ -209,6 +209,20 @@
       color: #28a745;
       margin-bottom: 1rem;
     }
+    .popup-content button {
+      margin-top: 1rem;
+      padding: 0.6rem 1.4rem;
+      border: none;
+      border-radius: 25px; /* ✅ Rounded edges */
+      background: #28a745;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .popup-content button:hover {
+      background: #218838;
+    }
   </style>
 </head>
 <body>
@@ -282,7 +296,7 @@
       <i class="fas fa-check-circle"></i>
       <h3>Appointment Confirmed!</h3>
       <p>Your booking has been successfully submitted.</p>
-      <button onclick="closePopup()" class="submit-btn">OK</button>
+      <button onclick="closePopup()">OK</button>
     </div>
   </div>
 
