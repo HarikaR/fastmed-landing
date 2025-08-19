@@ -16,6 +16,7 @@
       font-family: 'Segoe UI', sans-serif;
       background: #555;
       color: white;
+      text-align: center;
     }
 
     .overlay {
@@ -26,11 +27,11 @@
       align-items: center;
       justify-content: center;
       padding: 2rem 1rem;
-      text-align: center;
     }
 
     img.logo {
       width: 120px;
+      height: auto;
       margin-bottom: 1.5rem;
     }
 
@@ -50,7 +51,7 @@
       max-width: 650px;
       font-size: 1rem;
       line-height: 1.6;
-      margin: 1.5rem auto;
+      margin: 1.5rem 0;
     }
 
     .buttons {
@@ -69,6 +70,7 @@
       border-radius: 25px;
       font-weight: 600;
       transition: background 0.3s ease;
+      white-space: nowrap;
     }
 
     .buttons a:hover {
@@ -82,6 +84,7 @@
     .socials a {
       margin: 0 0.6rem;
       color: white;
+      text-decoration: none;
       font-size: 1.6rem;
       transition: color 0.3s ease;
     }
@@ -96,150 +99,239 @@
       color: #ccc;
     }
 
-    /* Hospitals & Doctors Section */
-    #main-content {
+    /* Booking UI */
+    #bookingSection {
       display: none;
-      padding: 2rem;
       background: #f5f5f5;
       color: #333;
+      padding: 2rem;
+      min-height: 100vh;
+      text-align: left;
     }
 
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      color: #00bfff;
-    }
-
-    .list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1.5rem;
-      padding: 1rem;
-    }
-
-    .card {
+    .hospital-card, .doctor-card {
       background: white;
-      border-radius: 12px;
       padding: 1rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin: 1rem 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      cursor: pointer;
       transition: transform 0.2s;
     }
-
-    .card:hover {
-      transform: scale(1.03);
+    .hospital-card:hover, .doctor-card:hover {
+      transform: scale(1.02);
     }
 
-    .card h3 {
-      margin: 0.5rem 0;
-      color: #222;
+    .timeslots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
     }
-
-    .card p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: #666;
-    }
-
-    .back-btn {
-      display: block;
-      margin: 2rem auto;
-      padding: 0.7rem 1.5rem;
+    .timeslots button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 20px;
       background: #00bfff;
       color: white;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.3s ease;
+    }
+    .timeslots button:hover {
+      background: #009acd;
+    }
+
+    .form-group {
+      margin: 0.8rem 0;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+    }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      padding: 0.6rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+    .form-actions button {
+      padding: 0.7rem 1.5rem;
+      border: none;
       border-radius: 25px;
-      text-decoration: none;
-      font-weight: bold;
-      width: fit-content;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .submit-btn {
+      background: #28a745;
+      color: white;
+    }
+    .submit-btn:hover {
+      background: #218838;
+    }
+    .close-btn {
+      background: #dc3545;
+      color: white;
+    }
+    .close-btn:hover {
+      background: #c82333;
+    }
+
+    /* Popup */
+    #confirmationPopup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .popup-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      color: #333;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .popup-content i {
+      font-size: 3rem;
+      color: #28a745;
+      margin-bottom: 1rem;
     }
 
     @media (max-width: 480px) {
       h1 { font-size: 2rem; }
       h2 { font-size: 1rem; }
       p { font-size: 0.95rem; }
-      .buttons { flex-direction: column; }
+      .buttons { flex-direction: column; width: 100%; }
+      .buttons a { width: 90%; max-width: 300px; }
     }
   </style>
 </head>
 <body>
-  <!-- Landing Section -->
-  <div class="overlay" id="landing">
+  <!-- Landing Page -->
+  <div class="overlay" id="landingPage">
     <img src="hellodoc-logo.png" alt="HelloDoc Logo" class="logo" />
     <h1>HelloDoc</h1>
     <h2>BOOK, SCAN, WALK-IN<br/>NO MORE WAITING JUST HELLODOC</h2>
     <p>
-      Say goodbye to long queues and chaotic waiting rooms. With HelloDocCare, booking a doctor’s appointment becomes as easy as ordering food online.
+      Say goodbye to long queues and chaotic waiting rooms. With HelloDocCare, booking a doctor’s appointment becomes as easy as ordering food online. You can now choose your preferred hospital or clinic, book a convenient time slot, and walk in with a QR code for instant, hassle-free check-in.
     </p>
-
     <div class="buttons">
-      <a href="#" onclick="showMain()">Join Early Access</a>
+      <a href="#" onclick="showBooking()">Join Early Access</a>
     </div>
-    
     <p>
       For hospitals and clinics, HelloDocCare is a game-changer — improving patient flow, reducing overcrowding, and enabling smarter scheduling.
     </p>
-
     <div class="buttons">
       <a href="#">Partner with Us</a>
     </div>
-
     <div class="socials">
       <a href="https://facebook.com/hellodoccare" target="_blank"><i class="fab fa-facebook-f"></i></a>
       <a href="https://instagram.com/hellodoccare" target="_blank"><i class="fab fa-instagram"></i></a>
       <a href="https://twitter.com/hellodoccare" target="_blank"><i class="fab fa-x-twitter"></i></a>
-      <a href="mailto:support@hellodoccare.in"><i class="fas fa-envelope"></i></a>
+      <a href="mailto:support@hellodoccare.in" target="_blank"><i class="fas fa-envelope"></i></a>
     </div>
-
     <div class="footer">hellodoccare.in</div>
   </div>
 
-  <!-- Hospitals & Doctors Section -->
-  <div id="main-content">
-    <h2 class="section-title">Nearby Hospitals</h2>
-    <div class="list">
-      <div class="card">
-        <h3>CityCare Hospital</h3>
-        <p>Multi-speciality | 2 km away</p>
-      </div>
-      <div class="card">
-        <h3>Metro Health Clinic</h3>
-        <p>General | 3.5 km away</p>
-      </div>
-      <div class="card">
-        <h3>Sunrise Hospital</h3>
-        <p>Orthopedics | 5 km away</p>
-      </div>
+  <!-- Booking Section -->
+  <div id="bookingSection">
+    <h2>Select a Hospital</h2>
+    <div class="hospital-card" onclick="showDoctors('City Hospital')">🏥 City Hospital</div>
+    <div class="hospital-card" onclick="showDoctors('Metro Clinic')">🏥 Metro Clinic</div>
+    <div class="hospital-card" onclick="showDoctors('FastMed Center')">🏥 FastMed Center</div>
+
+    <div id="doctorsSection" style="display:none;">
+      <h2 id="hospitalName"></h2>
+      <div class="doctor-card" onclick="showSlots('Dr. Smith')">👨‍⚕️ Dr. Smith (Cardiologist)</div>
+      <div class="doctor-card" onclick="showSlots('Dr. Patel')">👩‍⚕️ Dr. Patel (Dermatologist)</div>
+      <div class="doctor-card" onclick="showSlots('Dr. Lee')">👨‍⚕️ Dr. Lee (Orthopedic)</div>
     </div>
 
-    <h2 class="section-title">Doctors by Specialty</h2>
-    <div class="list">
-      <div class="card">
-        <h3>Dr. Meera Sharma</h3>
-        <p>Cardiologist - Metro Health Clinic</p>
-      </div>
-      <div class="card">
-        <h3>Dr. Rajiv Menon</h3>
-        <p>Orthopedic Surgeon - CityCare Hospital</p>
-      </div>
-      <div class="card">
-        <h3>Dr. Priya Nair</h3>
-        <p>Pediatrician - Sunrise Hospital</p>
-      </div>
+    <div id="slotsSection" style="display:none;">
+      <h3 id="doctorName"></h3>
+      <label for="date">Select Date:</label>
+      <input type="date" id="date" />
+      <div class="timeslots" id="timeSlots"></div>
     </div>
 
-    <a href="#" class="back-btn" onclick="showLanding()">← Back</a>
+    <div id="patientForm" style="display:none;">
+      <h3>Enter Patient Details</h3>
+      <div class="form-group"><label>Name</label><input type="text" /></div>
+      <div class="form-group"><label>Age</label><input type="number" /></div>
+      <div class="form-group"><label>Gender</label>
+        <select><option>Male</option><option>Female</option><option>Other</option></select>
+      </div>
+      <div class="form-group"><label>Phone Number</label><input type="tel" /></div>
+      <div class="form-group"><label>Email</label><input type="email" /></div>
+      <div class="form-group"><label>Reason to Visit/Symptoms</label><textarea></textarea></div>
+      <div class="form-actions">
+        <button class="submit-btn" onclick="confirmBooking()">Submit</button>
+        <button class="close-btn" onclick="closeForm()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirmation Popup -->
+  <div id="confirmationPopup">
+    <div class="popup-content">
+      <i class="fas fa-check-circle"></i>
+      <h3>Appointment Confirmed!</h3>
+      <p>Your booking has been successfully submitted.</p>
+      <button onclick="closePopup()" class="submit-btn">OK</button>
+    </div>
   </div>
 
   <script>
-    function showMain() {
-      document.getElementById('landing').style.display = 'none';
-      document.getElementById('main-content').style.display = 'block';
-      document.body.style.background = '#f5f5f5';
+    function showBooking() {
+      document.getElementById("landingPage").style.display = "none";
+      document.getElementById("bookingSection").style.display = "block";
     }
-    function showLanding() {
-      document.getElementById('landing').style.display = 'flex';
-      document.getElementById('main-content').style.display = 'none';
-      document.body.style.background = '#555';
+    function showDoctors(hospital) {
+      document.getElementById("hospitalName").innerText = "Doctors at " + hospital;
+      document.getElementById("doctorsSection").style.display = "block";
+    }
+    function showSlots(doctor) {
+      document.getElementById("doctorName").innerText = doctor + " - Available Slots";
+      document.getElementById("slotsSection").style.display = "block";
+      let slotsContainer = document.getElementById("timeSlots");
+      slotsContainer.innerHTML = "";
+      let start = 9.5, end = 16.5; // 9:30 to 4:30
+      for(let t=start; t<end; t+=0.25){
+        let hour = Math.floor(t);
+        let minute = (t%1)*60;
+        let label = `${hour}:${minute==0?'00':minute}`;
+        let btn = document.createElement("button");
+        btn.innerText = label;
+        btn.onclick = ()=>showForm(label);
+        slotsContainer.appendChild(btn);
+      }
+    }
+    function showForm(slot) {
+      document.getElementById("patientForm").style.display = "block";
+    }
+    function closeForm() {
+      document.getElementById("patientForm").style.display = "none";
+    }
+    function confirmBooking() {
+      document.getElementById("confirmationPopup").style.display = "flex";
+    }
+    function closePopup() {
+      document.getElementById("confirmationPopup").style.display = "none";
+      document.getElementById("patientForm").style.display = "none";
     }
   </script>
 </body>
