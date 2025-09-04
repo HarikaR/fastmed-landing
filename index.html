@@ -109,17 +109,43 @@
       text-align: left;
     }
 
+    /* Problem cards as grid tiles */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
     .card {
       background: white;
-      padding: 1rem;
-      margin: 1rem 0;
-      border-radius: 10px;
+      padding: 1.5rem;
+      border-radius: 12px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       cursor: pointer;
       transition: transform 0.2s;
+      font-weight: 600;
+      text-align: center;
     }
     .card:hover {
-      transform: scale(1.02);
+      transform: scale(1.03);
+    }
+
+    /* Different category colors */
+    .psych { background: #e6d6f5; } /* purple */
+    .gu { background: #d6f5f0; }    /* teal */
+    .gi { background: #ffe0b3; }    /* orange */
+    .general { background: #f5f5dc; } /* beige */
+    .resp { background: #d6eaff; }  /* light blue */
+    .ent { background: #f9d6d6; }   /* light red */
+    .neuro { background: #e6f0ff; } /* pale blue */
+    .bone { background: #d6f0ff; }  /* lighter blue */
+    .eye { background: #f0f5d6; }   /* yellow-green */
+    .skin { background: #d6f5d6; }  /* green */
+
+    /* Extra spacing between hospital and doctor cards */
+    #hospitalSection .card,
+    #doctorList .card {
+      margin: 0.8rem 0;
     }
 
     .timeslots {
@@ -255,16 +281,18 @@
   <!-- Booking Section -->
   <div id="bookingSection">
     <h2>Select a Category</h2>
-    <div class="card" onclick="showHospitals('Psychological / Emotional Problems')">🧠 Psychological / Emotional Problems</div>
-    <div class="card" onclick="showHospitals('Genitourinary Problems')">🚻 Genitourinary Problems</div>
-    <div class="card" onclick="showHospitals('Gastrointestinal Problems')">🍽️ Gastrointestinal Problems</div>
-    <div class="card" onclick="showHospitals('General Problems')">💊 General Problems (Fever, Cold, Cough, Headache)</div>
-    <div class="card" onclick="showHospitals('Respiratory Problems')">🌬️ Respiratory Problems</div>
-    <div class="card" onclick="showHospitals('ENT Problems')">👂 ENT Problems</div>
-    <div class="card" onclick="showHospitals('Neurological Problems')">🧩 Neurological Problems</div>
-    <div class="card" onclick="showHospitals('Bone Problems')">🦴 Bone Problems</div>
-    <div class="card" onclick="showHospitals('Eye Problems')">👁️ Eye Problems</div>
-    <div class="card" onclick="showHospitals('Skin Problems')">🧴 Skin Problems</div>
+    <div class="problem-grid">
+      <div class="card psych" onclick="showHospitals('Psychological / Emotional Problems')">🧠 Psychological / Emotional Problems</div>
+      <div class="card gu" onclick="showHospitals('Genitourinary Problems')">🚻 Genitourinary Problems</div>
+      <div class="card gi" onclick="showHospitals('Gastrointestinal Problems')">🍽️ Gastrointestinal Problems</div>
+      <div class="card general" onclick="showHospitals('General Problems')">💊 General Problems (Fever, Cold, Cough, Headache)</div>
+      <div class="card resp" onclick="showHospitals('Respiratory Problems')">🌬️ Respiratory Problems</div>
+      <div class="card ent" onclick="showHospitals('ENT Problems')">👂 ENT Problems</div>
+      <div class="card neuro" onclick="showHospitals('Neurological Problems')">🧩 Neurological Problems</div>
+      <div class="card bone" onclick="showHospitals('Bone Problems')">🦴 Bone Problems</div>
+      <div class="card eye" onclick="showHospitals('Eye Problems')">👁️ Eye Problems</div>
+      <div class="card skin" onclick="showHospitals('Skin Problems')">🌿 Skin Problems</div>
+    </div>
 
     <div id="hospitalSection" style="display:none;">
       <h2 id="selectedCategory"></h2>
