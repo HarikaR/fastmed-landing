@@ -109,7 +109,7 @@
       text-align: left;
     }
 
-    .hospital-card, .doctor-card {
+    .card {
       background: white;
       padding: 1rem;
       margin: 1rem 0;
@@ -118,7 +118,7 @@
       cursor: pointer;
       transition: transform 0.2s;
     }
-    .hospital-card:hover, .doctor-card:hover {
+    .card:hover {
       transform: scale(1.02);
     }
 
@@ -213,7 +213,7 @@
       margin-top: 1rem;
       padding: 0.6rem 1.4rem;
       border: none;
-      border-radius: 25px; /* ✅ Rounded edges */
+      border-radius: 25px;
       background: #28a745;
       color: white;
       font-weight: 600;
@@ -254,16 +254,28 @@
 
   <!-- Booking Section -->
   <div id="bookingSection">
-    <h2>Select a Hospital</h2>
-    <div class="hospital-card" onclick="showDoctors('City Hospital')">🏥 City Hospital</div>
-    <div class="hospital-card" onclick="showDoctors('Metro Clinic')">🏥 Metro Clinic</div>
-    <div class="hospital-card" onclick="showDoctors('FastMed Center')">🏥 FastMed Center</div>
+    <h2>Select a Category</h2>
+    <div class="card" onclick="showHospitals('Psychological / Emotional Problems')">🧠 Psychological / Emotional Problems</div>
+    <div class="card" onclick="showHospitals('Genitourinary Problems')">🚻 Genitourinary Problems</div>
+    <div class="card" onclick="showHospitals('Gastrointestinal Problems')">🍽️ Gastrointestinal Problems</div>
+    <div class="card" onclick="showHospitals('General Problems')">💊 General Problems (Fever, Cold, Cough, Headache)</div>
+    <div class="card" onclick="showHospitals('Respiratory Problems')">🌬️ Respiratory Problems</div>
+    <div class="card" onclick="showHospitals('ENT Problems')">👂 ENT Problems</div>
+    <div class="card" onclick="showHospitals('Neurological Problems')">🧩 Neurological Problems</div>
+    <div class="card" onclick="showHospitals('Bone Problems')">🦴 Bone Problems</div>
+    <div class="card" onclick="showHospitals('Eye Problems')">👁️ Eye Problems</div>
+    <div class="card" onclick="showHospitals('Skin Problems')">🧴 Skin Problems</div>
+
+    <div id="hospitalSection" style="display:none;">
+      <h2 id="selectedCategory"></h2>
+      <div class="card" onclick="showDoctors('City Hospital')">🏥 City Hospital</div>
+      <div class="card" onclick="showDoctors('Metro Clinic')">🏥 Metro Clinic</div>
+      <div class="card" onclick="showDoctors('FastMed Center')">🏥 FastMed Center</div>
+    </div>
 
     <div id="doctorsSection" style="display:none;">
       <h2 id="hospitalName"></h2>
-      <div class="doctor-card" onclick="showSlots('Dr. Smith')">👨‍⚕️ Dr. Smith (Cardiologist)</div>
-      <div class="doctor-card" onclick="showSlots('Dr. Patel')">👩‍⚕️ Dr. Patel (Dermatologist)</div>
-      <div class="doctor-card" onclick="showSlots('Dr. Lee')">👨‍⚕️ Dr. Lee (Orthopedic)</div>
+      <div id="doctorList"></div>
     </div>
 
     <div id="slotsSection" style="display:none;">
@@ -301,14 +313,79 @@
   </div>
 
   <script>
+    let selectedCategory = "";
+
+    const doctorsByCategory = {
+      "Psychological / Emotional Problems": [
+        "👩‍⚕️ Dr. Patel (Psychiatrist)",
+        "👨‍⚕️ Dr. Williams (Psychologist)"
+      ],
+      "Genitourinary Problems": [
+        "👨‍⚕️ Dr. Singh (Urologist)",
+        "👩‍⚕️ Dr. Rao (Gynecologist)"
+      ],
+      "Gastrointestinal Problems": [
+        "👨‍⚕️ Dr. Thomas (Gastroenterologist)",
+        "👩‍⚕️ Dr. Kim (GI Specialist)"
+      ],
+      "General Problems": [
+        "👨‍⚕️ Dr. Smith (Physician)",
+        "👩‍⚕️ Dr. Gupta (General Practitioner)"
+      ],
+      "Respiratory Problems": [
+        "👨‍⚕️ Dr. Brown (Pulmonologist)",
+        "👩‍⚕️ Dr. Das (Respiratory Specialist)"
+      ],
+      "ENT Problems": [
+        "👨‍⚕️ Dr. Patel (ENT Specialist)",
+        "👩‍⚕️ Dr. Rao (ENT Consultant)"
+      ],
+      "Neurological Problems": [
+        "👨‍⚕️ Dr. Chen (Neurologist)",
+        "👩‍⚕️ Dr. Kapoor (Neuro Specialist)"
+      ],
+      "Bone Problems": [
+        "👨‍⚕️ Dr. Lee (Orthopedic)",
+        "👨‍⚕️ Dr. Kumar (Orthopedic Surgeon)"
+      ],
+      "Eye Problems": [
+        "👩‍⚕️ Dr. Sharma (Ophthalmologist)",
+        "👨‍⚕️ Dr. Chen (Eye Specialist)"
+      ],
+      "Skin Problems": [
+        "👩‍⚕️ Dr. Mehta (Dermatologist)",
+        "👨‍⚕️ Dr. Brown (Skin Specialist)"
+      ]
+    };
+
     function showBooking() {
       document.getElementById("landingPage").style.display = "none";
       document.getElementById("bookingSection").style.display = "block";
     }
+
+    function showHospitals(category) {
+      selectedCategory = category;
+      document.getElementById("selectedCategory").innerText = "Hospitals for " + category;
+      document.getElementById("hospitalSection").style.display = "block";
+      document.getElementById("doctorsSection").style.display = "none";
+      document.getElementById("slotsSection").style.display = "none";
+      document.getElementById("patientForm").style.display = "none";
+    }
+
     function showDoctors(hospital) {
       document.getElementById("hospitalName").innerText = "Doctors at " + hospital;
+      const doctorList = document.getElementById("doctorList");
+      doctorList.innerHTML = "";
+      doctorsByCategory[selectedCategory].forEach(doc => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerText = doc;
+        card.onclick = () => showSlots(doc);
+        doctorList.appendChild(card);
+      });
       document.getElementById("doctorsSection").style.display = "block";
     }
+
     function showSlots(doctor) {
       document.getElementById("doctorName").innerText = doctor + " - Available Slots";
       document.getElementById("slotsSection").style.display = "block";
@@ -325,15 +402,19 @@
         slotsContainer.appendChild(btn);
       }
     }
+
     function showForm(slot) {
       document.getElementById("patientForm").style.display = "block";
     }
+
     function closeForm() {
       document.getElementById("patientForm").style.display = "none";
     }
+
     function confirmBooking() {
       document.getElementById("confirmationPopup").style.display = "flex";
     }
+
     function closePopup() {
       document.getElementById("confirmationPopup").style.display = "none";
       document.getElementById("patientForm").style.display = "none";
