@@ -143,7 +143,13 @@
     .eye { background: #f0f5d6; }
     .skin { background: #d6f5d6; }
 
-    /* Hospital cards - Zomato style */
+    /* Hospital cards grid */
+    .hospital-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
     .hospital-card {
       background: white;
       border-radius: 15px;
@@ -151,14 +157,13 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.15);
       cursor: pointer;
       transition: transform 0.2s;
-      margin-bottom: 1.2rem;
     }
     .hospital-card:hover {
       transform: scale(1.02);
     }
     .hospital-card img {
       width: 100%;
-      height: 180px;
+      height: 150px;
       object-fit: cover;
       display: block;
     }
@@ -310,7 +315,7 @@
       <a href="https://facebook.com/hellodoccare" target="_blank"><i class="fab fa-facebook-f"></i></a>
       <a href="https://instagram.com/hellodoccare" target="_blank"><i class="fab fa-instagram"></i></a>
       <a href="https://twitter.com/hellodoccare" target="_blank"><i class="fab fa-x-twitter"></i></a>
-      <a href="mailto:support@hellodoccare.in" target="_blank"><i class="fas fa-envelope"></i></a>
+      <a href="mailto:stepwellindia@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
     </div>
     <div class="footer">hellodoccare.in</div>
   </div>
@@ -333,25 +338,27 @@
 
     <div id="hospitalSection" style="display:none;">
       <h2 id="selectedCategory"></h2>
-      <div class="hospital-card" onclick="showDoctors('City Hospital')">
-        <img src="CityHospital.png" alt="City Hospital">
-        <div class="hospital-info">
-          <h3>City Hospital</h3>
-          <p>Multispeciality • 3.2 km away</p>
+      <div class="hospital-grid">
+        <div class="hospital-card" onclick="showDoctors('City Hospital')">
+          <img src="CityHospital.png" alt="City Hospital">
+          <div class="hospital-info">
+            <h3>City Hospital</h3>
+            <p>Multispeciality • 3.2 km away</p>
+          </div>
         </div>
-      </div>
-      <div class="hospital-card" onclick="showDoctors('Metro Clinic')">
-        <img src="MetroClinic.png" alt="Metro Clinic">
-        <div class="hospital-info">
-          <h3>Metro Clinic</h3>
-          <p>General & Diagnostics • 5.1 km away</p>
+        <div class="hospital-card" onclick="showDoctors('Metro Clinic')">
+          <img src="MetroClinic.png" alt="Metro Clinic">
+          <div class="hospital-info">
+            <h3>Metro Clinic</h3>
+            <p>General & Diagnostics • 5.1 km away</p>
+          </div>
         </div>
-      </div>
-      <div class="hospital-card" onclick="showDoctors('FastMed Center')">
-        <img src="FastMedCenter.png" alt="FastMed Center">
-        <div class="hospital-info">
-          <h3>FastMed Center</h3>
-          <p>Quick Care • 2.8 km away</p>
+        <div class="hospital-card" onclick="showDoctors('FastMed Center')">
+          <img src="FastMedCenter.png" alt="FastMed Center">
+          <div class="hospital-info">
+            <h3>FastMed Center</h3>
+            <p>Quick Care • 2.8 km away</p>
+          </div>
         </div>
       </div>
     </div>
