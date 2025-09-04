@@ -17,6 +17,7 @@
       background: #555;
       color: white;
       text-align: center;
+      scroll-behavior: smooth;
     }
 
     .overlay {
@@ -118,8 +119,8 @@
     }
     .card {
       background: white;
-      padding: 1.5rem;
-      border-radius: 12px;
+      padding: 1.2rem;
+      border-radius: 10px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       cursor: pointer;
       transition: transform 0.2s;
@@ -131,21 +132,48 @@
     }
 
     /* Different category colors */
-    .psych { background: #e6d6f5; } /* purple */
-    .gu { background: #d6f5f0; }    /* teal */
-    .gi { background: #ffe0b3; }    /* orange */
-    .general { background: #f5f5dc; } /* beige */
-    .resp { background: #d6eaff; }  /* light blue */
-    .ent { background: #f9d6d6; }   /* light red */
-    .neuro { background: #e6f0ff; } /* pale blue */
-    .bone { background: #d6f0ff; }  /* lighter blue */
-    .eye { background: #f0f5d6; }   /* yellow-green */
-    .skin { background: #d6f5d6; }  /* green */
+    .psych { background: #e6d6f5; }
+    .gu { background: #d6f5f0; }
+    .gi { background: #ffe0b3; }
+    .general { background: #f5f5dc; }
+    .resp { background: #d6eaff; }
+    .ent { background: #f9d6d6; }
+    .neuro { background: #e6f0ff; }
+    .bone { background: #d6f0ff; }
+    .eye { background: #f0f5d6; }
+    .skin { background: #d6f5d6; }
 
-    /* Extra spacing between hospital and doctor cards */
-    #hospitalSection .card,
+    /* Hospital cards - Zomato style */
+    .hospital-card {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      padding: 0.8rem 1rem;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      background: white;
+      color: #333;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-bottom: 1.2rem; /* Extra spacing between hospital cards */
+    }
+    .hospital-card:hover {
+      background: #f0f0f0;
+    }
+    .hospital-card img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+    }
+
+    /* Smaller doctor cards */
     #doctorList .card {
-      margin: 0.8rem 0;
+      text-align: left;
+      padding: 0.8rem 1rem;
+      font-weight: 500;
+      margin-bottom: 1rem; /* Extra spacing between doctor cards */
     }
 
     .timeslots {
@@ -296,9 +324,15 @@
 
     <div id="hospitalSection" style="display:none;">
       <h2 id="selectedCategory"></h2>
-      <div class="card" onclick="showDoctors('City Hospital')">🏥 City Hospital</div>
-      <div class="card" onclick="showDoctors('Metro Clinic')">🏥 Metro Clinic</div>
-      <div class="card" onclick="showDoctors('FastMed Center')">🏥 FastMed Center</div>
+      <div class="hospital-card" onclick="showDoctors('City Hospital')">
+        <img src="CityHospital.png" alt="City Hospital Logo"> City Hospital
+      </div>
+      <div class="hospital-card" onclick="showDoctors('Metro Clinic')">
+        <img src="MetroClinic.png" alt="Metro Clinic Logo"> Metro Clinic
+      </div>
+      <div class="hospital-card" onclick="showDoctors('FastMed Center')">
+        <img src="FastMedCenter.png" alt="FastMed Center Logo"> FastMed Center
+      </div>
     </div>
 
     <div id="doctorsSection" style="display:none;">
@@ -391,6 +425,10 @@
       document.getElementById("bookingSection").style.display = "block";
     }
 
+    function scrollToElement(id) {
+      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    }
+
     function showHospitals(category) {
       selectedCategory = category;
       document.getElementById("selectedCategory").innerText = "Hospitals for " + category;
@@ -398,6 +436,7 @@
       document.getElementById("doctorsSection").style.display = "none";
       document.getElementById("slotsSection").style.display = "none";
       document.getElementById("patientForm").style.display = "none";
+      scrollToElement("hospitalSection");
     }
 
     function showDoctors(hospital) {
@@ -412,6 +451,7 @@
         doctorList.appendChild(card);
       });
       document.getElementById("doctorsSection").style.display = "block";
+      scrollToElement("doctorsSection");
     }
 
     function showSlots(doctor) {
@@ -429,10 +469,12 @@
         btn.onclick = ()=>showForm(label);
         slotsContainer.appendChild(btn);
       }
+      scrollToElement("slotsSection");
     }
 
     function showForm(slot) {
       document.getElementById("patientForm").style.display = "block";
+      scrollToElement("patientForm");
     }
 
     function closeForm() {
