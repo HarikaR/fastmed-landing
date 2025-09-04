@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HelloDoc - FastMed</title>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    crossorigin="anonymous"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" />
   <style>
     body {
       margin: 0;
@@ -117,31 +115,73 @@
       gap: 1rem;
       margin-top: 1rem;
     }
+
     .card {
       background: white;
       padding: 1.2rem;
       border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       cursor: pointer;
       transition: transform 0.2s;
       font-weight: 600;
       text-align: center;
     }
+
     .card:hover {
       transform: scale(1.03);
     }
 
     /* Different category colors */
-    .psych { background: #e6d6f5; }
-    .gu { background: #d6f5f0; }
-    .gi { background: #ffe0b3; }
-    .general { background: #f5f5dc; }
-    .resp { background: #d6eaff; }
-    .ent { background: #f9d6d6; }
-    .neuro { background: #e6f0ff; }
-    .bone { background: #d6f0ff; }
-    .eye { background: #f0f5d6; }
-    .skin { background: #d6f5d6; }
+    .psych {
+      background: #e6d6f5;
+    }
+
+    .gu {
+      background: #d6f5f0;
+    }
+
+    .gi {
+      background: #ffe0b3;
+    }
+
+    .general {
+      background: #f5f5dc;
+    }
+
+    .resp {
+      background: #d6eaff;
+    }
+
+    .ent {
+      background: #f9d6d6;
+    }
+
+    .neuro {
+      background: #e6f0ff;
+    }
+
+    .bone {
+      background: #d6f0ff;
+    }
+
+    .eye {
+      background: #f0f5d6;
+    }
+
+    .skin {
+      background: #d6f5d6;
+    }
+
+    .gyneac {
+      background: #ffd6eb;
+    }
+
+    /* Gyneac pink */
+    .pediatrics {
+      background: #d6fff6;
+    }
+
+    /* Pediatrics light teal */
 
     /* Hospital cards grid */
     .hospital-grid {
@@ -150,32 +190,38 @@
       gap: 1rem;
       margin-top: 1rem;
     }
+
     .hospital-card {
       background: white;
       border-radius: 15px;
       overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
       cursor: pointer;
       transition: transform 0.2s;
     }
+
     .hospital-card:hover {
       transform: scale(1.02);
     }
+
     .hospital-card img {
       width: 100%;
       height: 350px;
       object-fit: cover;
       display: block;
     }
+
     .hospital-info {
       padding: 1rem;
     }
+
     .hospital-info h3 {
       margin: 0;
       font-size: 1.2rem;
       font-weight: 600;
       color: #333;
     }
+
     .hospital-info p {
       margin: 0.3rem 0 0;
       font-size: 0.9rem;
@@ -196,6 +242,7 @@
       gap: 0.5rem;
       margin: 1rem 0;
     }
+
     .timeslots button {
       padding: 0.5rem 1rem;
       border: none;
@@ -206,6 +253,7 @@
       font-size: 0.9rem;
       transition: background 0.3s ease;
     }
+
     .timeslots button:hover {
       background: #009acd;
     }
@@ -213,12 +261,16 @@
     .form-group {
       margin: 0.8rem 0;
     }
+
     .form-group label {
       display: block;
       margin-bottom: 0.3rem;
       font-weight: 600;
     }
-    .form-group input, .form-group textarea, .form-group select {
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
       width: 100%;
       padding: 0.6rem;
       border-radius: 6px;
@@ -230,6 +282,7 @@
       justify-content: space-between;
       margin-top: 1rem;
     }
+
     .form-actions button {
       padding: 0.7rem 1.5rem;
       border: none;
@@ -238,17 +291,21 @@
       font-weight: 600;
       transition: 0.3s;
     }
+
     .submit-btn {
       background: #28a745;
       color: white;
     }
+
     .submit-btn:hover {
       background: #218838;
     }
+
     .close-btn {
       background: #dc3545;
       color: white;
     }
+
     .close-btn:hover {
       background: #c82333;
     }
@@ -257,26 +314,31 @@
     #confirmationPopup {
       display: none;
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
       align-items: center;
       justify-content: center;
       z-index: 1000;
     }
+
     .popup-content {
       background: white;
       padding: 2rem;
       border-radius: 10px;
       text-align: center;
       color: #333;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
+
     .popup-content i {
       font-size: 3rem;
       color: #28a745;
       margin-bottom: 1rem;
     }
+
     .popup-content button {
       margin-top: 1rem;
       padding: 0.6rem 1.4rem;
@@ -288,25 +350,30 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
+
     .popup-content button:hover {
       background: #218838;
     }
   </style>
 </head>
+
 <body>
   <!-- Landing Page -->
   <div class="overlay" id="landingPage">
     <img src="hellodoc-logo.png" alt="HelloDoc Logo" class="logo" />
     <h1>HelloDoc</h1>
-    <h2>BOOK, SCAN, WALK-IN<br/>NO MORE WAITING JUST HELLODOC</h2>
+    <h2>BOOK, SCAN, WALK-IN<br />NO MORE WAITING JUST HELLODOC</h2>
     <p>
-      Say goodbye to long queues and chaotic waiting rooms. With HelloDocCare, booking a doctor’s appointment becomes as easy as ordering food online. You can now choose your preferred hospital or clinic, book a convenient time slot, and walk in with a QR code for instant, hassle-free check-in.
+      Say goodbye to long queues and chaotic waiting rooms. With HelloDocCare, booking a doctor’s appointment becomes as
+      easy as ordering food online. You can now choose your preferred hospital or clinic, book a convenient time slot,
+      and walk in with a QR code for instant, hassle-free check-in.
     </p>
     <div class="buttons">
       <a href="#" onclick="showBooking()">Join Early Access</a>
     </div>
     <p>
-      For hospitals and clinics, HelloDocCare is a game-changer — improving patient flow, reducing overcrowding, and enabling smarter scheduling.
+      For hospitals and clinics, HelloDocCare is a game-changer — improving patient flow, reducing overcrowding, and
+      enabling smarter scheduling.
     </p>
     <div class="buttons">
       <a href="#">Partner with Us</a>
@@ -324,16 +391,20 @@
   <div id="bookingSection">
     <h2>Select a Category</h2>
     <div class="problem-grid">
-      <div class="card psych" onclick="showHospitals('Psychological / Emotional Problems')">🧠 Psychological / Emotional Problems</div>
+      <div class="card psych" onclick="showHospitals('Psychological / Emotional Problems')">🧠 Psychological / Emotional
+        Problems</div>
       <div class="card gu" onclick="showHospitals('Genitourinary Problems')">🚻 Genitourinary Problems</div>
       <div class="card gi" onclick="showHospitals('Gastrointestinal Problems')">🍽️ Gastrointestinal Problems</div>
-      <div class="card general" onclick="showHospitals('General Problems')">💊 General Problems (Fever, Cold, Cough, Headache)</div>
+      <div class="card general" onclick="showHospitals('General Problems')">💊 General Problems (Fever, Cold, Cough,
+        Headache)</div>
       <div class="card resp" onclick="showHospitals('Respiratory Problems')">🌬️ Respiratory Problems</div>
       <div class="card ent" onclick="showHospitals('ENT Problems')">👂 ENT Problems</div>
       <div class="card neuro" onclick="showHospitals('Neurological Problems')">🧩 Neurological Problems</div>
       <div class="card bone" onclick="showHospitals('Bone Problems')">🦴 Bone Problems</div>
       <div class="card eye" onclick="showHospitals('Eye Problems')">👁️ Eye Problems</div>
       <div class="card skin" onclick="showHospitals('Skin Problems')">🌿 Skin Problems</div>
+      <div class="card gyneac" onclick="showHospitals('Gyneacology Problems')">👩‍🍼 Gyneacology Problems</div>
+      <div class="card pediatrics" onclick="showHospitals('Pediatrics Problems')">👶 Pediatrics Problems</div>
     </div>
 
     <div id="hospitalSection" style="display:none;">
@@ -380,7 +451,11 @@
       <div class="form-group"><label>Name</label><input type="text" /></div>
       <div class="form-group"><label>Age</label><input type="number" /></div>
       <div class="form-group"><label>Gender</label>
-        <select><option>Male</option><option>Female</option><option>Other</option></select>
+        <select>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
       </div>
       <div class="form-group"><label>Phone Number</label><input type="tel" /></div>
       <div class="form-group"><label>Email</label><input type="email" /></div>
@@ -445,6 +520,14 @@
       "Skin Problems": [
         "👩‍⚕️ Dr. Mehta (Dermatologist)",
         "👨‍⚕️ Dr. Brown (Skin Specialist)"
+      ],
+      "Gyneacology Problems": [
+        "👩‍⚕️ Dr. Nair (Gynecologist)",
+        "👩‍⚕️ Dr. Fernandez (Obstetrician)"
+      ],
+      "Pediatrics Problems": [
+        "👶 Dr. Banerjee (Pediatrician)",
+        "👶 Dr. Wilson (Child Specialist)"
       ]
     };
 
@@ -488,13 +571,13 @@
       let slotsContainer = document.getElementById("timeSlots");
       slotsContainer.innerHTML = "";
       let start = 9.5, end = 16.5; // 9:30 to 4:30
-      for(let t=start; t<end; t+=0.25){
+      for (let t = start; t < end; t += 0.25) {
         let hour = Math.floor(t);
-        let minute = (t%1)*60;
-        let label = `${hour}:${minute==0?'00':minute}`;
+        let minute = (t % 1) * 60;
+        let label = `${hour}:${minute == 0 ? '00' : minute}`;
         let btn = document.createElement("button");
         btn.innerText = label;
-        btn.onclick = ()=>showForm(label);
+        btn.onclick = () => showForm(label);
         slotsContainer.appendChild(btn);
       }
       scrollToElement("slotsSection");
@@ -521,5 +604,5 @@
     }
   </script>
 </body>
-</html>
 
+</html>
