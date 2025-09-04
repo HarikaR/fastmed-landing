@@ -145,27 +145,36 @@
 
     /* Hospital cards - Zomato style */
     .hospital-card {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 12px;
-      padding: 0.8rem 1rem;
-      border-radius: 10px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
       background: white;
-      color: #333;
-      font-weight: 500;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
       cursor: pointer;
-      transition: background 0.2s;
-      margin-bottom: 1.2rem; /* Extra spacing between hospital cards */
+      transition: transform 0.2s;
+      margin-bottom: 1.2rem;
     }
     .hospital-card:hover {
-      background: #f0f0f0;
+      transform: scale(1.02);
     }
     .hospital-card img {
-      width: 50px;
-      height: 50px;
-      object-fit: contain;
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+    .hospital-info {
+      padding: 1rem;
+    }
+    .hospital-info h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+    }
+    .hospital-info p {
+      margin: 0.3rem 0 0;
+      font-size: 0.9rem;
+      color: #666;
     }
 
     /* Smaller doctor cards */
@@ -173,7 +182,7 @@
       text-align: left;
       padding: 0.8rem 1rem;
       font-weight: 500;
-      margin-bottom: 1rem; /* Extra spacing between doctor cards */
+      margin-bottom: 1rem;
     }
 
     .timeslots {
@@ -325,13 +334,25 @@
     <div id="hospitalSection" style="display:none;">
       <h2 id="selectedCategory"></h2>
       <div class="hospital-card" onclick="showDoctors('City Hospital')">
-        <img src="CityHospital.png" alt="City Hospital Logo"> City Hospital
+        <img src="CityHospital.png" alt="City Hospital">
+        <div class="hospital-info">
+          <h3>City Hospital</h3>
+          <p>Multispeciality • 3.2 km away</p>
+        </div>
       </div>
       <div class="hospital-card" onclick="showDoctors('Metro Clinic')">
-        <img src="MetroClinic.png" alt="Metro Clinic Logo"> Metro Clinic
+        <img src="MetroClinic.png" alt="Metro Clinic">
+        <div class="hospital-info">
+          <h3>Metro Clinic</h3>
+          <p>General & Diagnostics • 5.1 km away</p>
+        </div>
       </div>
       <div class="hospital-card" onclick="showDoctors('FastMed Center')">
-        <img src="FastMedCenter.png" alt="FastMed Center Logo"> FastMed Center
+        <img src="FastMedCenter.png" alt="FastMed Center">
+        <div class="hospital-info">
+          <h3>FastMed Center</h3>
+          <p>Quick Care • 2.8 km away</p>
+        </div>
       </div>
     </div>
 
